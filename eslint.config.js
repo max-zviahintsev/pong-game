@@ -24,6 +24,19 @@ export default [
   jsxA11y.flatConfigs.recommended,
   eslintConfigPrettier,
   {
+    settings: {
+      react: {
+        version: 'detect',
+      },
+      'import-x/resolver-next': [
+        createTypeScriptImportResolver({
+          alwaysTryTypes: true,
+          project: ['tsconfig.app.json', 'tsconfig.node.json'],
+        }),
+      ],
+    },
+  },
+  {
     files: ['**/*.{js,mjs,cjs,jsx,mjsx,ts,tsx,mtsx}'],
     ignores: ['eslint.config.js', 'dist'],
     languageOptions: {
@@ -49,17 +62,6 @@ export default [
       'import-x/no-nodejs-modules': 'warn',
       'jsx-a11y/alt-text': 'error',
       'prettier/prettier': 'error',
-    },
-    settings: {
-      react: {
-        version: 'detect',
-      },
-      'import-x/resolver-next': [
-        createTypeScriptImportResolver({
-          alwaysTryTypes: true,
-          project: ['tsconfig.app.json', 'tsconfig.node.json'],
-        }),
-      ],
     },
   },
 ]
