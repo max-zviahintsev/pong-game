@@ -55,6 +55,13 @@ export default [
     rules: {
       '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
       '@typescript-eslint/explicit-function-return-type': 'off',
+      '@typescript-eslint/no-magic-numbers': [
+        'error',
+        {
+          ignore: [0, 1],
+          ignoreEnums: true,
+        },
+      ],
       'react/jsx-uses-react': 'off',
       'react/react-in-jsx-scope': 'off',
       'react/prop-types': 'off',
@@ -62,6 +69,12 @@ export default [
       'import-x/no-nodejs-modules': 'warn',
       'jsx-a11y/alt-text': 'error',
       'prettier/prettier': 'error',
+    },
+  },
+  {
+    files: ['src/shared/constants.ts'],
+    rules: {
+      '@typescript-eslint/no-magic-numbers': 'off',
     },
   },
 ]
