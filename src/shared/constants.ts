@@ -22,3 +22,9 @@ export const BALL_RADIUS = 5
 
 export const SPEED_X = -1
 export const SPEED_Y = -1
+export const SPEED_Y_MEDIUM = -3
+export const SPEED_LIMIT = 5
+export const TRAJECTORY_MULTIPLIER = 0.3
+
+export const COMPUTER_SPEED = 3
+export const COMPUTER_SPEED_FAST = 6

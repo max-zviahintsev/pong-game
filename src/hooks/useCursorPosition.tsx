@@ -1,8 +1,10 @@
-import { useState, useEffect } from 'react'
-import { PADDLE_DEFAULT_X, CANVAS_WIDTH, PADDLE_WIDTH } from '../shared/constants'
+import { useEffect } from 'react'
+import { useSetPaddleBottomX, useSetPlayerMovedAtom } from '../store/hooks'
+import { CANVAS_WIDTH, PADDLE_WIDTH } from '../shared/constants'
 
 function useCursorPosition() {
-  const [paddleBottomX, setPaddleBottomX] = useState(PADDLE_DEFAULT_X)
+  const setPaddleBottomX = useSetPaddleBottomX()
+  const setPlayerMovedAtom = useSetPlayerMovedAtom()
 
   function calculateX(cursorX: number) {
     let paddlePosition = cursorX - CANVAS_WIDTH + PADDLE_WIDTH
@@ -24,13 +26,12 @@ function useCursorPosition() {
     }
 
     window.addEventListener('mousemove', handleMouseMove)
+    setPlayerMovedAtom(true)
 
     return () => {
       window.removeEventListener('mousemove', handleMouseMove)
     }
-  }, [])
-
-  return paddleBottomX
+  }, [setPaddleBottomX, setPlayerMovedAtom])
 }
 
 export default useCursorPosition

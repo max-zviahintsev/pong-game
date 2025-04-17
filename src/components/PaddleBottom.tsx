@@ -1,9 +1,9 @@
 import { Rect } from 'react-konva'
-import useCursorPosition from '../hooks/useCursorPosition'
+import { usePaddleBottomX } from '../store/hooks'
 import { PADDLE_BOTTOM_Y, PADDLE_WIDTH, PADDLE_HEIGHT } from '../shared/constants'
 
 function PaddleBottom() {
-  const paddleBottomX = useCursorPosition()
+  const paddleBottomX = usePaddleBottomX()
 
   return (
     <Rect

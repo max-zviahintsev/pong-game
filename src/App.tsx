@@ -1,6 +1,7 @@
 import { Stage, Layer, Rect, Line } from 'react-konva'
 import { useGameLoop } from './hooks/useGameLoop'
-import * as c from './shared/constants'
+import useCursorPosition from './hooks/useCursorPosition'
+import { CANVAS_WIDTH, CANVAS_HEIGHT, MIDDLE_LINE, LINE_DASH } from './shared/constants'
 import Ball from './components/Ball'
 import PaddleTop from './components/PaddleTop'
 import PaddleBottom from './components/PaddleBottom'
@@ -9,16 +10,17 @@ import PlayerScore from './components/PlayerScore'
 
 function App() {
   useGameLoop()
+  useCursorPosition()
 
   return (
-    <Stage width={c.CANVAS_WIDTH} height={c.CANVAS_HEIGHT} style={{ cursor: 'none' }}>
+    <Stage width={CANVAS_WIDTH} height={CANVAS_HEIGHT} style={{ cursor: 'none' }}>
       <Layer>
         <Rect
           id='background'
           x={0}
           y={0}
-          width={c.CANVAS_WIDTH}
-          height={c.CANVAS_HEIGHT}
+          width={CANVAS_WIDTH}
+          height={CANVAS_HEIGHT}
           fill='black'
         />
       </Layer>
@@ -28,7 +30,7 @@ function App() {
 
         <ComputerScore />
 
-        <Line points={c.MIDDLE_LINE} stroke='grey' strokeWidth={2} dash={c.LINE_DASH} />
+        <Line points={MIDDLE_LINE} stroke='grey' strokeWidth={2} dash={LINE_DASH} />
 
         <PlayerScore />
 
