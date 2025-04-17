@@ -19,3 +19,6 @@ export const MIDDLE_LINE = [0, CENTER_Y, CANVAS_WIDTH, CENTER_Y]
 export const LINE_DASH = [3, 3]
 
 export const BALL_RADIUS = 5
+
+export const SPEED_X = -1
+export const SPEED_Y = -1
