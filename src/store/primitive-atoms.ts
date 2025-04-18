@@ -17,3 +17,6 @@ export const computerScoreAtom = atom(0)
 export const playerScoreAtom = atom(0)
 
 export const computerSpeedAtom = atom(c.COMPUTER_SPEED)
+
+export const isGameOver = atom(true)
+export const isNewGame = atom(true)
