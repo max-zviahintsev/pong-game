@@ -43,20 +43,20 @@ export const ballBoundariesAtom = atom(null, (get, set) => {
   // Bounce off player paddle (bottom)
   if (ballY > CANVAS_HEIGHT - PADDLE_CENTER) {
     if (ballX > paddleBottomX && ballX < paddleBottomX + PADDLE_WIDTH) {
-      set(paddleContactAtom, () => true)
+      set(paddleContactAtom, true)
       // Add Speed on Hit
       if (playerMoved) {
         set(speedYAtom, (prev) => prev - 1)
         // Max Speed
         if (speedY < -SPEED_LIMIT) {
-          set(speedYAtom, () => -SPEED_LIMIT)
-          set(computerSpeedAtom, () => COMPUTER_SPEED_FAST)
+          set(speedYAtom, -SPEED_LIMIT)
+          set(computerSpeedAtom, COMPUTER_SPEED_FAST)
         }
       }
       set(speedYAtom, (prev) => -prev)
 
       const trajectoryX = ballX - (paddleBottomX + PADDLE_CENTER)
-      set(speedXAtom, () => trajectoryX * TRAJECTORY_MULTIPLIER)
+      set(speedXAtom, trajectoryX * TRAJECTORY_MULTIPLIER)
     } else if (ballY > CANVAS_HEIGHT) {
       // Reset Ball, add to Computer Score
       set(ballResetAtom)
@@ -71,7 +71,7 @@ export const ballBoundariesAtom = atom(null, (get, set) => {
         set(speedYAtom, (prev) => prev + 1)
         // Max Speed
         if (speedY > SPEED_LIMIT) {
-          set(speedYAtom, () => SPEED_LIMIT)
+          set(speedYAtom, SPEED_LIMIT)
         }
       }
       set(speedYAtom, (prev) => -prev)

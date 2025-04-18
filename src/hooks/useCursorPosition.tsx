@@ -1,28 +1,24 @@
 import { useEffect } from 'react'
-import { useSetPaddleBottomX, useSetPlayerMovedAtom } from '../store/hooks'
-import { CANVAS_WIDTH, PADDLE_WIDTH } from '../shared/constants'
+import { useSetPaddleBottomX, useSetPlayerMoved } from '../store/hooks'
+import { CANVAS_WIDTH, PADDLE_WIDTH, PADDLE_CENTER } from '../shared/constants'
 
 function useCursorPosition() {
   const setPaddleBottomX = useSetPaddleBottomX()
-  const setPlayerMovedAtom = useSetPlayerMovedAtom()
-
-  function calculateX(cursorX: number) {
-    let paddlePosition = cursorX - CANVAS_WIDTH + PADDLE_WIDTH
-
-    switch (true) {
-      case paddlePosition < 0:
-        paddlePosition = 0
-        break
-      case paddlePosition > CANVAS_WIDTH - PADDLE_WIDTH:
-        paddlePosition = CANVAS_WIDTH - PADDLE_WIDTH
-        break
-    }
-    return paddlePosition
-  }
+  const setPlayerMovedAtom = useSetPlayerMoved()
 
   useEffect(() => {
     const handleMouseMove = (event: MouseEvent) => {
-      setPaddleBottomX(calculateX(event.clientX))
+      const canvas = document.getElementById('game-canvas')
+      if (!canvas) return
+
+      const bounds = canvas.getBoundingClientRect()
+      const relativeX = event.clientX - bounds.left
+
+      let paddlePosition = relativeX - PADDLE_CENTER
+
+      paddlePosition = Math.max(0, Math.min(paddlePosition, CANVAS_WIDTH - PADDLE_WIDTH))
+
+      setPaddleBottomX(paddlePosition)
     }
 
     window.addEventListener('mousemove', handleMouseMove)

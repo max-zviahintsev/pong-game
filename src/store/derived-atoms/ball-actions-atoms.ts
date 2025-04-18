@@ -23,8 +23,8 @@ export const ballMoveAtom = atom(null, (get, set) => {
 })
 
 export const ballResetAtom = atom(null, (get, set) => {
-  set(ballXAtom, () => CENTER_X)
-  set(ballYAtom, () => CENTER_Y)
-  set(speedYAtom, () => SPEED_Y_MEDIUM)
-  set(paddleContactAtom, () => false)
+  set(ballXAtom, CENTER_X)
+  set(ballYAtom, CENTER_Y)
+  set(speedYAtom, SPEED_Y_MEDIUM)
+  set(paddleContactAtom, false)
 })

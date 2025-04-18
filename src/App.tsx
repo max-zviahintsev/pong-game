@@ -7,13 +7,20 @@ import PaddleTop from './components/PaddleTop'
 import PaddleBottom from './components/PaddleBottom'
 import ComputerScore from './components/ComputerScore'
 import PlayerScore from './components/PlayerScore'
+import GameOver from './components/GameOver'
+import { useGameOver } from './store/hooks'
 
 function App() {
   useGameLoop()
   useCursorPosition()
+  const isGameOver = useGameOver()
+
+  if (isGameOver) {
+    return <GameOver />
+  }
 
   return (
-    <Stage width={CANVAS_WIDTH} height={CANVAS_HEIGHT} style={{ cursor: 'none' }}>
+    <Stage id='game-canvas' width={CANVAS_WIDTH} height={CANVAS_HEIGHT} style={{ cursor: 'none' }}>
       <Layer>
         <Rect
           id='background'
@@ -21,7 +28,7 @@ function App() {
           y={0}
           width={CANVAS_WIDTH}
           height={CANVAS_HEIGHT}
-          fill='black'
+          fill='rgb(26, 24, 24)'
         />
       </Layer>
 
